@@ -5,6 +5,7 @@ const titleField = () => document.getElementById('cardTitleField');
 const authorField = () => document.getElementById('cardAuthorField');
 const contentField = () => document.getElementById('cardContentField');
 const showCards = () => document.getElementById('showCards');
+let selected = showCards().value
 const holdCards = () => document.getElementById('holdCards');
 const editCard = () => document.getElementById('editCard')
 const deleteCard = () => document.getElementById('deleteCard');
@@ -21,7 +22,7 @@ let cardList = [
         content: 'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'
     }
 ];
-let notCardList =[
+let notCardList = [
     {
         title: 'title3',
         author: 'author3',
@@ -47,12 +48,22 @@ function createCard(data) { //function to create card from data
     return newCard;
 }
 
-function displayCards(cardSet){ //function to display cards from array
+function displayCards(selected) { //function to display cards from array
     holdCards().innerHTML = '';
-    cardSet.forEach(card => {
-        let created = createCard(card);
-        holdCards().appendChild(created)
-    })
+    if (selected == 'currentCards') {
+        cardList.forEach(card => {
+            let created = createCard(card);
+            holdCards().appendChild(created)
+        })
+    } else if (selected == 'deletedCards') {
+        notCardList.forEach(card => {
+            let created = createCard(card);
+            holdCards().appendChild(created)
+        })
+    } else {
+        console.log('neither selected')
+    }
+
 }
 
 
@@ -68,25 +79,17 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
     }
 
     cardList.unshift(cardData) //add to created card list
-    createCard(cardData) //create div card to add to html
+    displayCards(selected)
 })
 
 showCards().addEventListener('change', (event) => { //add change listener to select
     event.preventDefault();
     console.log('heard change')
     let selected = event.target.value;
-    if(selected == 'currentCards'){
-        // console.log(cardList)
-        displayCards(cardList)
-    }else if(selected == 'deletedCards'){
-        // console.log(notCardList)
-        displayCards(notCardList)
-    }else{
-        console.log('neither selected')
-    }
-    
+    displayCards(selected)
+    return selected;
 })
 
 //Renders
 
-displayCards(cardList);
+displayCards(selected);
