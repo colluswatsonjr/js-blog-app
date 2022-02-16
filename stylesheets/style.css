@@ -1,3 +1,29 @@
 body{
     background-color: teal;
 }
+.cards{
+    border: 2px solid black;
+}
+
+.card{
+    display: inline-block;
+    width: 45%;
+    margin: 1%;
+    padding: 1%;
+    border: 2px solid black;
+    text-align: center;
+}
+
+#cardTitle{
+    background-color: red;
+    text-align: center;
+    padding: 1px;
+}
+
+#cardAuthor{
+    background-color: green;
+}
+
+#cardContent{
+    background-color: blue;
+}
