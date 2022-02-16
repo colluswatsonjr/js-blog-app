@@ -10,33 +10,7 @@ const holdCards = () => document.getElementById('holdCards');
 // const editCard = () => document.querySelector('#editCard');
 // const deleteCard = () => document.querySelector('#deleteCard');
 
-let cardList = [
-    {
-        id: 1,
-        title: 'title1',
-        author: 'author1',
-        content: 'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'
-    },
-    {
-        id: 2,
-        title: 'title2',
-        author: 'author2',
-        content: 'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'
-    }
-];
-let notCardList = [
-    {
-        id: 3,
-        title: 'title3',
-        author: 'author3',
-        content: 'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'
-    },
-    {
-        id: 4,
-        title: 'title4',
-        author: 'author4',
-        content: 'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'
-    }];
+
 
 //Functions
 function createCard(data) { //function to create card from data
@@ -51,33 +25,65 @@ function createCard(data) { //function to create card from data
     <button id="editCard">Edit Card</button>
     <button id="deleteCard">Delete Card</button>
     `;
-    newCard.querySelector('#editCard').addEventListener('click', ()=>{
+    newCard.querySelector('#editCard').addEventListener('click', () => {
         console.log(newCard)
     })
-    newCard.querySelector('#deleteCard').addEventListener('click', ()=>{
+    newCard.querySelector('#deleteCard').addEventListener('click', () => {
         console.log(newCard)
     })
     return newCard;
 }
 
 function displayCards(selected = 'currentCards') { //function to display cards from array
-    holdCards().innerHTML = '';
-    if (selected == 'currentCards') {
-        cardList.forEach(card => {
-            let created = createCard(card);
-            holdCards().appendChild(created)
-        })
-    } else if (selected == 'deletedCards') {
-        notCardList.forEach(card => {
-            let created = createCard(card);
-            holdCards().appendChild(created)
-        })
-    } else {
-        console.log('neither selected')
-    }
+    fetchData(selected);
+    // holdCards().innerHTML = '';
+    // if (selected == 'currentCards') {
+    //     let list = fetchData(selected)
+    //     console.log(list)
+    //     // cardList.forEach(card => {
+    //     //     let created = createCard(card);
+    //     //     holdCards().appendChild(created)
+    //     // })
+    // } else if (selected == 'deletedCards') {
+    //     notCardList.forEach(card => {
+    //         let created = createCard(card);
+    //         holdCards().appendChild(created)
+    //     })
+    // } else {
+    //     console.log('neither selected')
+    // }
 
 }
 
+//Fetch
+// http://localhost:3000/currentCards
+// http://localhost:3000/deletedCards
+function fetchData(select) { //fetch data from database
+    holdCards().innerHTML = '';
+    fetch(`http://localhost:3000/${select}`)
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(card => {
+                let created = createCard(card);
+                holdCards().appendChild(created)
+            })
+        })
+        .catch(err => console.log(err))
+};
+
+function fetchPostData(cardData){ //add data to database using fetch
+    fetch(`http://localhost:3000/currentCards`,{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(cardData)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+}
 
 //Eventlisteners
 createCardForm().addEventListener('submit', (event) => { //add submit listenr to form
@@ -89,9 +95,9 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
         author: authorField().value,
         content: contentField().value
     }
-
-    cardList.unshift(cardData) //add to created card list
-    displayCards(selected)
+    
+    fetchPostData(cardData);
+    displayCards(selected);
 })
 
 showCards().addEventListener('change', (event) => { //add change listener to select
@@ -107,4 +113,5 @@ showCards().addEventListener('change', (event) => { //add change listener to sel
 document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault();
     displayCards();
+    // fetchData();
 })
