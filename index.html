@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,38 +8,38 @@
     <title>blogApp</title>
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
+
 <body>
     <div class="container">
-        <form action="post" id="createCardForm" class="card-form">
-            <label for="card-title">Title:</label><br>
-            <input type="text" name="card-title" id="cardTitleField"><br>
-            <label for="card-author">Author:</label><br>
-            <input type="text" name="card-author" id="cardAuthorField"><br>
-            <label for="card-content">What would you like to say?</label><br>
-            <textarea name="card-content" id="cardContentField" cols="30" rows="10"></textarea><br>
-            <button type="submit">Create New Card</button>
-        </form>
-    </div>
-    <br>
-    <div class="container">
-        <select name="show-cards" id="showCards">
-            <option value="currentCards">Current Cards</option>
-            <option value="deletedCards">Deleted Cards</option>
-        </select>
+        <div class="full-row">
+            <form action="post" id="createCardForm" class="card-form">
+                <label for="card-title">Title:</label><br>
+                <input type="text" name="card-title" id="cardTitleField"><br>
+                <label for="card-author">Author:</label><br>
+                <input type="text" name="card-author" id="cardAuthorField"><br>
+                <label for="card-content">What would you like to say?</label><br>
+                <textarea name="card-content" id="cardContentField" cols="30" rows="10"></textarea><br>
+                <button type="submit">Create New Card</button>
+            </form>
+        </div>
+        <br>
+        <div class="">
+            <select class="row" name="show-cards" id="showCards">
+                <option value="currentCards">Current Cards</option>
+                <option value="deletedCards">Deleted Cards</option>
+            </select>
 
-        <div id="holdCards">
-            <!-- <div class="card">
-                <h2 id="cardTitle">Title...</h3>
-                <h4 id="cardAuthor">Author...</h5>
-                <h4 id="cardContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo dignissimos porro eveniet nesciunt alias officia minima deserunt vero, delectus, nemo nisi? Atque nemo error provident earum optio dicta laboriosam nobis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident voluptates dignissimos tempora, recusandae nulla ullam iure nihil aperiam, debitis, laboriosam eum inventore hic rerum. A possimus excepturi temporibus dignissimos cupiditate? Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro iste repellendus quas aspernatur repudiandae, possimus, atque eius dicta doloribus tenetur excepturi? Quos cumque fuga ipsa reiciendis officiis distinctio iste. Perferendis?</h6>
-                <button type="submit" id="editCard">Edit Card</button>
-                <button type="submit" id="deleteCard">Delete Card</button>            
-            </div> -->
+            <div class="cards row" id="holdCards">
+
+
+            </div>
         </div>
     </div>
 
 
-
     <script src="javascripts/index.js"></script>
+
+
 </body>
+
 </html>
