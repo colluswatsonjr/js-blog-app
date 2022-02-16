@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
+    <div class="container">
+        <form action="post" id="createCardForm" class="card-form">
+            <label for="card-title">Title:</label><br>
+            <input type="text" name="card-title" id="cardTitleField"><br>
+            <label for="card-author">Author:</label><br>
+            <input type="text" name="card-author" id="cardAuthorField"><br>
+            <label for="card-content">What would you like to say?</label><br>
+            <textarea name="card-content" id="cardContentField" cols="30" rows="10"></textarea><br>
+            <button type="submit">Create New Card</button>
+        </form>
+    </div>
+
+
+
     <script src="javascripts/index.js"></script>
 </body>
 </html>
