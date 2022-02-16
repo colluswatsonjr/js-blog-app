@@ -20,4 +20,8 @@ Blog app, where users can create and edit blogs.
 * Mocked Login
 
 ###
--Create form to create blogs.
+-Add submit event listener to form to get inputs.
+-Create function to inputs to turn data into an data object.
+-Create fucntion to turn data object into div.
+-Create display function to add div to html page.
+-Add chage event listener to select to switch between list of cards array.
