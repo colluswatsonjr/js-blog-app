@@ -1,0 +1,36 @@
+{
+  "currentCards": [
+    {
+      "id": 1,
+      "title": "'title1'",
+      "author": "'author1'",
+      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+    },
+    {
+      "id": 2,
+      "title": "'title2'",
+      "author": "'author2'",
+      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+    },
+    {
+      "title": "title55",
+      "author": "auhtor545",
+      "content": "fadffasdfmad m dalsmcascasaslckascklmascas",
+      "id": 3
+    }
+  ],
+  "deletedCards": [
+    {
+      "id": 3,
+      "title": "'title3'",
+      "author": "'author3'",
+      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+    },
+    {
+      "id": 3,
+      "title": "'title3'",
+      "author": "'author3'",
+      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+    }
+  ]
+}
