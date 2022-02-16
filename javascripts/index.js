@@ -5,7 +5,6 @@ const titleField = () => document.getElementById('cardTitleField');
 const authorField = () => document.getElementById('cardAuthorField');
 const contentField = () => document.getElementById('cardContentField');
 const showCards = () => document.getElementById('showCards');
-let selected = showCards().value
 const holdCards = () => document.getElementById('holdCards');
 // const editCard = () => document.querySelector('#editCard');
 // const deleteCard = () => document.querySelector('#deleteCard');
@@ -34,8 +33,8 @@ function createCard(data) { //function to create card from data
     return newCard;
 }
 
-function displayCards(selected = 'currentCards') { //function to display cards from array
-    fetchData(selected);
+function displayCards() { //function to display cards from array
+    fetchData();
     // holdCards().innerHTML = '';
     // if (selected == 'currentCards') {
     //     let list = fetchData(selected)
@@ -58,7 +57,7 @@ function displayCards(selected = 'currentCards') { //function to display cards f
 //Fetch
 // http://localhost:3000/currentCards
 // http://localhost:3000/deletedCards
-function fetchData(select) { //fetch data from database
+function fetchData(select = showCards().value) { //fetch data from database
     holdCards().innerHTML = '';
     fetch(`http://localhost:3000/${select}`)
         .then(res => res.json())
@@ -71,7 +70,7 @@ function fetchData(select) { //fetch data from database
         .catch(err => console.log(err))
 };
 
-function fetchPostData(cardData){ //add data to database using fetch
+function postData(cardData){ //add data to database using fetch
     fetch(`http://localhost:3000/currentCards`,{
         method:'POST',
         headers:{
@@ -87,8 +86,8 @@ function fetchPostData(cardData){ //add data to database using fetch
 
 //Eventlisteners
 createCardForm().addEventListener('submit', (event) => { //add submit listenr to form
+    debugger;
     event.preventDefault();
-    console.log('heard submit')
 
     let cardData = {
         title: titleField().value,
@@ -96,16 +95,13 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
         content: contentField().value
     }
     
-    fetchPostData(cardData);
-    displayCards(selected);
+    postData(cardData); //add data to database
+    fetchData(); //display all cards of currently selected 
 })
 
 showCards().addEventListener('change', (event) => { //add change listener to select
     event.preventDefault();
-    console.log('heard change')
-    let selected = event.target.value;
-    displayCards(selected)
-    return selected;
+    displayCards();
 })
 
 
