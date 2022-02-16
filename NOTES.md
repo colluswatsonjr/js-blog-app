@@ -19,7 +19,7 @@ Blog app, where users can create and edit blogs.
 ## Stretch Goals
 * Mocked Login
 
-###
+### Goals
 -Add submit event listener to form to get inputs.
 -Create function to inputs to turn data into an data object.
 -Create fucntion to turn data object into div.
