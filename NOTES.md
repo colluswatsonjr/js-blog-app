@@ -25,3 +25,7 @@ Blog app, where users can create and edit blogs.
 -Create fucntion to turn data object into div.
 -Create display function to add div to html page.
 -Add chage event listener to select to switch between list of cards array.
+-Add fetch request function to get data from db.json
+-Add fetch post request function to add data to db.json
+-Add fetch delete request ot delete items from db.json
+-Add fetch patch request to update items in db.json
