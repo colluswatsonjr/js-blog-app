@@ -14,27 +14,56 @@ const holdCards = () => document.getElementById('holdCards');
 //Functions
 function createCard(data) { //function to create card from data
     console.log('got data')
-    let newCard = document.createElement('div')
-    newCard.classList.add('card');
-    newCard.id = '';
-    newCard.innerHTML = `
+    let card = document.createElement('div')
+    card.classList.add('card');
+    card.id = '';
+    card.innerHTML = `
     <h2 id="cardTitle">${data.title}</h2>
     <h4 id="cardAuthor">${data.author}</h4>
     <h4 id="cardContent">${data.content}</h4>
     <button id="editCard">Edit Card</button>
+    <button id="save">Save</button>
+    <button id="cancel">Cancel</button>
     <button id="restoreCard">Retore Card</button>
     <button id="removeCard">Remove Card</button>
     `;
-    newCard.querySelector('#editCard').addEventListener('click', () => {
+    card.querySelector('#save').style.display = 'none';
+    card.querySelector('#cancel').style.display = 'none';
+
+    card.querySelector('#editCard').addEventListener('click', () => {
+
+        card.querySelector('#cardTitle').contentEditable = 'true';
+        card.querySelector('#cardAuthor').contentEditable = 'true';
+        card.querySelector('#cardContent').contentEditable = 'true';
+
+        card.querySelector('#editCard').style.display = 'none';
+        card.querySelector('#removeCard').style.display = 'none';
         
+        card.querySelector('#save').style.display = '';
+        card.querySelector('#cancel').style.display = '';
+
+        card.querySelector('#save').addEventListener('click', () => {
+            let newData = {
+                title: card.querySelector('#cardTitle').innerHTML,
+                author: card.querySelector('#cardAuthor').innerHTML,
+                content: card.querySelector('#cardContent').innerHTML,
+                id: data.id
+            }
+            patchData(newData);
+            fetchData();
+        })
+        card.querySelector('#cancel').addEventListener('click', () => {
+            fetchData();
+        })
+
     })
-    newCard.querySelector('#restoreCard').addEventListener('click', () => {
+    card.querySelector('#restoreCard').addEventListener('click', () => {
         deleteData(data, 'removedCards');
         data.id = '';
         postData(data, 'currentCards');
         fetchData();
     })
-    newCard.querySelector('#removeCard').addEventListener('click', () => {
+    card.querySelector('#removeCard').addEventListener('click', () => {
         if (confirm("Are you sure?")) {
             if (showCards().value == 'currentCards') {
                 console.log('remove')
@@ -47,7 +76,7 @@ function createCard(data) { //function to create card from data
             fetchData();
         }
     })
-    return newCard;
+    return card;
 }
 function displayCards() { //function to display cards from array
     fetchData();
@@ -105,6 +134,21 @@ function postData(cardData, selectList = showCards().value) { //add data to data
         .then(data => console.log(data))
         .catch(err => console.log(err))
 }
+function patchData(cardData, selectList = showCards().value){
+    console.log('update')
+    
+    fetch(`http://localhost:3000/${selectList}/${cardData.id}`,{
+        method:'PATCH',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(cardData)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+}
+
 function deleteData(cardData, selectList = showCards().value) {
     console.log(cardData)
     fetch(`http://localhost:3000/${selectList}/${cardData.id}`, {
