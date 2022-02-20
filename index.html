@@ -11,27 +11,42 @@
 
 <body>
     <div class="container">
-        <div class="full-row">
-            <form action="post" id="createCardForm" class="card-form">
-                <label for="card-title">Title:</label><br>
-                <input type="text" name="card-title" id="cardTitleField"><br>
-                <label for="card-author">Author:</label><br>
-                <input type="text" name="card-author" id="cardAuthorField"><br>
-                <label for="card-content">What would you like to say?</label><br>
-                <textarea name="card-content" id="cardContentField" cols="30" rows="10"></textarea><br>
-                <button type="submit">Create New Card</button>
-            </form>
+        <div class="top">
+            <div class="title">Hello...</div>
+            <div class="subtitle">Create New Post!</div>
+            <div class="input-container">
+                <form action="post" id="createCardForm" class="card-form">
+                    <label for="card-title">Title:</label><br>
+                    <input type="text" name="card-title" id="cardTitleField"><br>
+                    <label for="card-author">Author:</label><br>
+                    <input type="text" name="card-author" id="cardAuthorField"><br>
+                    <label for="card-content">What would you like to say?</label><br>
+                    <textarea name="card-content" id="cardContentField" cols="30" rows="10"></textarea><br>
+                    <button type="submit">Create New Card</button>
+                </form>
+            </div>
         </div>
+
         <br>
-        <div class="">
-            <select class="row" name="show-cards" id="showCards">
-                <option value="currentCards">Current Cards</option>
-                <option value="removedCards">Removed Cards</option>
-            </select>
 
-            <div class="cards row" id="holdCards">
+        <select class="middle" name="show-cards" id="showCards">
+            <option value="currentCards">Current Cards</option>
+            <option value="removedCards">Removed Cards</option>
+        </select>
 
+        <br>
 
+        <div class="cards" id="holdCards">
+            <!-- <div class="card">
+                <h2 id="cardTitle">${data.title}</h2>
+                <h3 id="cardContent">${data.content}</h3>
+                <h4 id="cardAuthor">${data.author}</h4>
+                <br>
+                <button id="editCard">Edit Card</button>
+                <button id="save">Save</button>
+                <button id="cancel">Cancel</button>
+                <button id="restoreCard">Restore Card</button>
+                <button id="removeCard">Remove Card</button> -->
             </div>
         </div>
     </div>
