@@ -1,29 +1,68 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 body{
-    background-color: teal;
+    background: #7f7fd5;
+    background-color: black;
+    /* background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5); */
 }
+
+.container{
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+}
+
+.top{
+    padding: .5%;
+    color: greenyellow;
+    background-color: black;
+    border: 3px solid greenyellow;
+    border-radius: 10px;
+}
+
 .cards{
-    border: 2px solid black;
-}
+    padding: .5%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 10px 10px;
 
+}
 .card{
-    display: inline-block;
-    width: 45%;
-    margin: 1%;
-    padding: 1%;
-    border: 2px solid black;
-    text-align: center;
+    background-color: black;
+    border: 3px solid greenyellow;
+    border-radius: 10px;
+    padding: .5%;
+    width: 30%;
+    order: 1;
+    flex-grow: 1;
+    word-break: break-all;
+    color: aqua;
 }
-
 #cardTitle{
-    background-color: red;
-    text-align: center;
-    padding: 1px;
+    padding: .5%;
 }
-
-#cardAuthor{
-    background-color: green;
-}
-
 #cardContent{
-    background-color: blue;
+    padding: 1%;
+    text-align: left;
+    line-height: normal;
+    font-weight: 200;
+}
+#cardAuthor{
+    padding: .5%;
+    text-align: right;
+}
+select{
+    color: greenyellow;
+    border: 2px solid greenyellow;
+    background-color: black;
+}
+button{
+    padding: 2px;
+    border: 2px solid greenyellow;
+    border-radius: 8px;
+    color: greenyellow;
+    background-color: black;
 }
