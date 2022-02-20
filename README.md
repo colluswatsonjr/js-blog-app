@@ -1,10 +1,21 @@
 # JS blogApp project
+**version 1.0.0**
 
-## Overview.
-This is to detail this project for users.
+---
+## Purpose
+A blogApp created with html/css/javascript. blogApp allows users to create, edit, remove, and delete cards.
 
-### How to use.
-This shows users how to use repository.
+---
+# Created with
+html / css / javascript / json / visual studio code
 
-### How to contribute.
-This shows how users can contribute if this is an open source project.
+---
+
+
+## How to use!
+
+> Open Ubuntu terminal (https://ubuntu.com/download/desktop) 
+
+> Download Json server (https://www.npmjs.com/package/json-server)
+
+> Copy git code SSH (https://github.com/colluswatsonjr/js-project-01) -> git clone *-paste code-* ->
