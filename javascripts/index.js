@@ -19,8 +19,8 @@ function createCard(data) { //function to create card from data
     card.id = '';
     card.innerHTML = `
     <h2 id="cardTitle">${data.title}</h2>
+    <h3 id="cardContent">${data.content}</h3>
     <h4 id="cardAuthor">${data.author}</h4>
-    <h4 id="cardContent">${data.content}</h4>
     <button id="editCard">Edit Card</button>
     <button id="save">Save</button>
     <button id="cancel">Cancel</button>
@@ -38,7 +38,7 @@ function createCard(data) { //function to create card from data
 
         card.querySelector('#editCard').style.display = 'none';
         card.querySelector('#removeCard').style.display = 'none';
-        
+
         card.querySelector('#save').style.display = '';
         card.querySelector('#cancel').style.display = '';
 
@@ -64,40 +64,21 @@ function createCard(data) { //function to create card from data
         fetchData();
     })
     card.querySelector('#removeCard').addEventListener('click', () => {
-        if (confirm("Are you sure?")) {
-            if (showCards().value == 'currentCards') {
-                console.log('remove')
-                deleteData(data, 'currentCards');
-                data.id = '';
-                postData(data, 'removedCards');
-            } else if (showCards().value == 'removedCards') {
-                deleteData(data)
-            }
-            fetchData();
+        // if (confirm("Are you sure?")) {
+        if (showCards().value == 'currentCards') {
+            console.log('remove')
+            deleteData(data, 'currentCards');
+            data.id = '';
+            postData(data, 'removedCards');
+        } else if (showCards().value == 'removedCards') {
+            deleteData(data)
         }
+        fetchData();
+        // }
     })
     return card;
 }
-function displayCards() { //function to display cards from array
-    fetchData();
-    // holdCards().innerHTML = '';
-    // if (selected == 'currentCards') {
-    //     let list = fetchData(selected)
-    //     console.log(list)
-    //     // cardList.forEach(card => {
-    //     //     let created = createCard(card);
-    //     //     holdCards().appendChild(created)
-    //     // })
-    // } else if (selected == 'deletedCards') {
-    //     notCardList.forEach(card => {
-    //         let created = createCard(card);
-    //         holdCards().appendChild(created)
-    //     })
-    // } else {
-    //     console.log('neither selected')
-    // }
 
-}
 //Fetch
 // http://localhost:3000/currentCards
 // http://localhost:3000/removedCards
@@ -106,7 +87,9 @@ function fetchData(selectList = showCards().value) { //fetch data from database
     fetch(`http://localhost:3000/${selectList}`)
         .then(res => res.json())
         .then(data => {
-            data.forEach(card => {
+            let array = data.reverse()
+            array.forEach(card => {
+
                 let created = createCard(card);
                 if (selectList == 'currentCards') {
                     created.querySelector('#restoreCard').style.display = 'none';
@@ -134,19 +117,19 @@ function postData(cardData, selectList = showCards().value) { //add data to data
         .then(data => console.log(data))
         .catch(err => console.log(err))
 }
-function patchData(cardData, selectList = showCards().value){
+function patchData(cardData, selectList = showCards().value) {
     console.log('update')
-    
-    fetch(`http://localhost:3000/${selectList}/${cardData.id}`,{
-        method:'PATCH',
-        headers:{
-            'Content-Type':'application/json'
+
+    fetch(`http://localhost:3000/${selectList}/${cardData.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(cardData)
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
 }
 
 function deleteData(cardData, selectList = showCards().value) {
@@ -174,17 +157,20 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
 
     postData(cardData, 'currentCards'); //add data to database
     fetchData(); //display all cards of currently selected 
+
+    titleField().value = '';
+    authorField().value = '';
+    contentField().value = '';
 })
 
 showCards().addEventListener('change', (event) => { //add change listener to select
     event.preventDefault();
-    displayCards();
+    fetchData();
 })
 
 
 //Renders
 document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault();
-    displayCards();
-    // fetchData();
+    fetchData();
 })

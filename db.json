@@ -1,36 +1,30 @@
 {
   "currentCards": [
     {
-      "id": 1,
-      "title": "'title1'",
-      "author": "'author1'",
-      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+      "title": "2nd Created",
+      "author": "jr",
+      "content": "This is the second card created. These cards can be edited, removed, restored and deleted.",
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "'title2'",
-      "author": "'author2'",
-      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+      "title": "Example Title",
+      "author": "jr",
+      "content": "This is an example of the card you can create.",
+      "id": 2
     },
     {
-      "title": "title55",
-      "author": "auhtor545",
-      "content": "fadffasdfmad m dalsmcascasaslckascklmascas",
+      "title": "How was my",
+      "author": "Jr",
+      "content": "My day was great. How was yours?...",
       "id": 3
     }
   ],
-  "deletedCards": [
+  "removedCards": [
     {
-      "id": 3,
-      "title": "'title3'",
-      "author": "'author3'",
-      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
-    },
-    {
-      "id": 3,
-      "title": "'title3'",
-      "author": "'author3'",
-      "content": "'contentekdfnjnjvnvn wjfvwjefv wjvwfvwfvvwev'"
+      "title": "Title",
+      "author": "-Author",
+      "content": "sfnasdfnasdfnasdkfnasdfknasfkasnfkanfsakdfnasfkasfsdafnsadfksfnsnkfdsnfdsafadsf",
+      "id": 1
     }
   ]
 }
