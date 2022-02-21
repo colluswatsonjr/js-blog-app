@@ -64,7 +64,7 @@ function createCard(data) { //function to create card from data
         fetchData();
     })
     card.querySelector('#removeCard').addEventListener('click', () => {
-        // if (confirm("Are you sure?")) {
+        if (confirm("Are you sure?")) {
         if (showCards().value == 'currentCards') {
             console.log('remove')
             deleteData(data, 'currentCards');
@@ -74,7 +74,7 @@ function createCard(data) { //function to create card from data
             deleteData(data)
         }
         fetchData();
-        // }
+        }
     })
     return card;
 }
