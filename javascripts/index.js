@@ -6,6 +6,7 @@ const authorField = () => document.getElementById('cardAuthorField');
 const contentField = () => document.getElementById('cardContentField');
 const showCards = () => document.getElementById('showCards');
 const holdCards = () => document.getElementById('holdCards');
+const selectList = showCards().value;
 // const editCard = () => document.querySelector('#editCard');
 // const deleteCard = () => document.querySelector('#deleteCard');
 
@@ -58,7 +59,7 @@ function createCard(data) { //function to create card from data
 
     })
     card.querySelector('#restoreCard').addEventListener('click', () => {
-        deleteData(data, 'removedCards');
+        deleteData(data);
         data.id = '';
         postData(data, 'currentCards');
         fetchData();
@@ -66,8 +67,7 @@ function createCard(data) { //function to create card from data
     card.querySelector('#removeCard').addEventListener('click', () => {
         if (confirm("Are you sure?")) {
         if (showCards().value == 'currentCards') {
-            console.log('remove')
-            deleteData(data, 'currentCards');
+            deleteData(data);
             data.id = '';
             postData(data, 'removedCards');
         } else if (showCards().value == 'removedCards') {
@@ -82,7 +82,7 @@ function createCard(data) { //function to create card from data
 //Fetch
 // http://localhost:3000/currentCards
 // http://localhost:3000/removedCards
-function fetchData(selectList = showCards().value) { //fetch data from database
+function fetchData() { //fetch data from database
     holdCards().innerHTML = '';
     fetch(`http://localhost:3000/${selectList}`)
         .then(res => res.json())
@@ -132,7 +132,7 @@ function patchData(cardData, selectList = showCards().value) {
         .catch(err => console.log(err))
 }
 
-function deleteData(cardData, selectList = showCards().value) {
+function deleteData(cardData) {
     console.log(cardData)
     fetch(`http://localhost:3000/${selectList}/${cardData.id}`, {
         method: 'DELETE',
