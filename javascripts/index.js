@@ -155,9 +155,16 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
         content: contentField().value
     }
 
+    document.querySelector('#formButton').style.background = 'greenyellow';
+    document.querySelector('#formButton').style.color = 'black';
+
+
     postData(cardData, 'currentCards'); //add data to database
     fetchData(); //display all cards of currently selected 
-
+    setTimeout(()=>{
+        document.querySelector('#formButton').style.background = 'black';
+        document.querySelector('#formButton').style.color = 'greenyellow';
+    },300)
     titleField().value = '';
     authorField().value = '';
     contentField().value = '';
