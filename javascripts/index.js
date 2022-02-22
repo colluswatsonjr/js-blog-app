@@ -6,7 +6,6 @@ const authorField = () => document.getElementById('cardAuthorField');
 const contentField = () => document.getElementById('cardContentField');
 const showCards = () => document.getElementById('showCards');
 const holdCards = () => document.getElementById('holdCards');
-const selectList = showCards().value;
 // const editCard = () => document.querySelector('#editCard');
 // const deleteCard = () => document.querySelector('#deleteCard');
 
@@ -20,8 +19,11 @@ function createCard(data) { //function to create card from data
     card.id = '';
     card.innerHTML = `
     <h2 id="cardTitle">${data.title}</h2>
+    <br>
     <h3 id="cardContent">${data.content}</h3>
+    <br>
     <h4 id="cardAuthor">${data.author}</h4>
+    <br>
     <button id="editCard">Edit Card</button>
     <button id="save">Save</button>
     <button id="cancel">Cancel</button>
@@ -36,6 +38,12 @@ function createCard(data) { //function to create card from data
         card.querySelector('#cardTitle').contentEditable = 'true';
         card.querySelector('#cardAuthor').contentEditable = 'true';
         card.querySelector('#cardContent').contentEditable = 'true';
+
+        card.querySelector('#cardTitle').style.background = 'gray';
+        card.querySelector('#cardAuthor').style.background = 'gray';
+        card.querySelector('#cardContent').style.background = 'gray';
+        
+        
 
         card.querySelector('#editCard').style.display = 'none';
         card.querySelector('#removeCard').style.display = 'none';
@@ -59,7 +67,7 @@ function createCard(data) { //function to create card from data
 
     })
     card.querySelector('#restoreCard').addEventListener('click', () => {
-        deleteData(data);
+        deleteData(data, 'removedCards');
         data.id = '';
         postData(data, 'currentCards');
         fetchData();
@@ -67,11 +75,11 @@ function createCard(data) { //function to create card from data
     card.querySelector('#removeCard').addEventListener('click', () => {
         if (confirm("Are you sure?")) {
         if (showCards().value == 'currentCards') {
-            deleteData(data);
+            deleteData(data, 'currentCards');
             data.id = '';
             postData(data, 'removedCards');
         } else if (showCards().value == 'removedCards') {
-            deleteData(data)
+            deleteData(data, 'removedCards')
         }
         fetchData();
         }
@@ -82,7 +90,7 @@ function createCard(data) { //function to create card from data
 //Fetch
 // http://localhost:3000/currentCards
 // http://localhost:3000/removedCards
-function fetchData() { //fetch data from database
+function fetchData(selectList = showCards().value) { //fetch data from database
     holdCards().innerHTML = '';
     fetch(`http://localhost:3000/${selectList}`)
         .then(res => res.json())
@@ -132,7 +140,7 @@ function patchData(cardData, selectList = showCards().value) {
         .catch(err => console.log(err))
 }
 
-function deleteData(cardData) {
+function deleteData(cardData, selectList = showCards().value) {
     console.log(cardData)
     fetch(`http://localhost:3000/${selectList}/${cardData.id}`, {
         method: 'DELETE',
@@ -159,8 +167,8 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
     document.querySelector('#formButton').style.color = 'black';
 
 
-    postData(cardData, 'currentCards'); //add data to database
-    fetchData(); //display all cards of currently selected 
+
+
     setTimeout(()=>{
         document.querySelector('#formButton').style.background = 'black';
         document.querySelector('#formButton').style.color = 'greenyellow';
@@ -168,11 +176,14 @@ createCardForm().addEventListener('submit', (event) => { //add submit listenr to
     titleField().value = '';
     authorField().value = '';
     contentField().value = '';
+
+    postData(cardData, 'currentCards'); //add data to database
+    fetchData(); //display all cards of currently selected 
 })
 
 showCards().addEventListener('change', (event) => { //add change listener to select
     event.preventDefault();
-    fetchData();
+    fetchData(event.target.value);
 })
 
 
