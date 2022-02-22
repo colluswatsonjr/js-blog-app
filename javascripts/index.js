@@ -13,7 +13,6 @@ const holdCards = () => document.getElementById('holdCards');
 
 //Functions
 function createCard(data) { //function to create card from data
-    console.log('got data')
     let card = document.createElement('div')
     card.classList.add('card');
     card.id = '';
@@ -126,8 +125,6 @@ function postData(cardData, selectList = showCards().value) { //add data to data
         .catch(err => console.log(err))
 }
 function patchData(cardData, selectList = showCards().value) {
-    console.log('update')
-
     fetch(`http://localhost:3000/${selectList}/${cardData.id}`, {
         method: 'PATCH',
         headers: {
@@ -141,7 +138,6 @@ function patchData(cardData, selectList = showCards().value) {
 }
 
 function deleteData(cardData, selectList = showCards().value) {
-    console.log(cardData)
     fetch(`http://localhost:3000/${selectList}/${cardData.id}`, {
         method: 'DELETE',
         headers: {
