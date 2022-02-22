@@ -1,5 +1,8 @@
 // alert('hello world!')
+console.log('To use: install json-server and start server!')
+
 // grabs form, inputs, selectors, containers, buttons by ID
+
 const createCardForm = () => document.getElementById('createCardForm');
 const titleField = () => document.getElementById('cardTitleField');
 const authorField = () => document.getElementById('cardAuthorField');
