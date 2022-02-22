@@ -19,13 +19,18 @@ html / css / javascript / json-server / visual studio code
 
 >Start Json Server for db.json file (json-server --watch db.json)
 ---
+https://youtu.be/4obm1wpIv64
+
 >Create Card:
-
+![Alt Text](photos/create.gif)
+>Select Cards:
+![Alt Text](photos/select.gif)
 >Edit Card:
-
+![Alt Text](photos/edit.gif)
 >Remove Card:
-
+![Alt Text](photos/remove.gif)
 >Restore Card:
-
+![Alt Text](photos/restore.gif)
 >Delete Card:
+![Alt Text](photos/delete.gif)
 ---
