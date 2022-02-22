@@ -1,36 +1,30 @@
 {
   "currentCards": [
     {
-      "title": "2nd Created",
-      "author": "jr",
-      "content": "This is the second card created. These cards can be edited, removed, restored and deleted.",
+      "title": "Next Card",
+      "author": "Jr",
+      "content": "This is the next card!",
       "id": 1
     },
     {
-      "title": "Example Title",
-      "author": "jr",
-      "content": "This is an example of the card you can create.",
+      "title": "title",
+      "author": "auhtor",
+      "content": "This is a card, its not that big",
       "id": 2
     },
     {
-      "title": "How was my",
-      "author": "Jr",
-      "content": "My day was great. How was yours?...",
+      "title": "title",
+      "author": "auhtor",
+      "content": "sdfasdfasdfasdfasdasdffasdfasdfasdfasdf this this this this this this this this&nbsp; asdfa malcom",
       "id": 3
     }
   ],
   "removedCards": [
     {
-      "title": "Title",
-      "author": "-Author",
-      "content": "sfnasdfnasdfnasdkfnasdfknasfkasnfkanfsakdfnasfkasfsdafnsadfksfnsnkfdsnfdsafadsf",
+      "title": "",
+      "author": "",
+      "content": "",
       "id": 1
-    },
-    {
-      "title": "title2",
-      "author": "auhtor",
-      "content": "ashdfuahsd ud",
-      "id": 2
     }
   ]
 }
